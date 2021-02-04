@@ -4,7 +4,6 @@ ScriptsOnlyBuild:
     - RotatingPendulum
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
-    - UnityEditor.TestTools.TestRunner.TestListCacheData
     Vuforia.UnityExtensions.dll:
     - Vuforia.ImageTargetBehaviour
     - Vuforia.TurnOffBehaviour
@@ -56,7 +55,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11036}
     - Class: 114
-      Script: {instanceID: 13014}
+      Script: {instanceID: 13040}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157

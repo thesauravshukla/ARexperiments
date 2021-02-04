@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class MoveDishToBurner : MonoBehaviour
 {
-    public Transform newcoordinates;    //Transform of the position of the china dish on the wire gauze
-    public Transform oldcoordinates;    //Transform of the position of the china dish when not on the wire gauze
-    public Transform bowl;  //Transform of the china dish
-    public Transform Fire;  //Transform of the Burner flame
-    bool isBurning=false;   //Boolean variable keeping track of whether the burner flame is on or off
-    public Material powder; //Variable storing material of copper powder
-    bool bowlPos = false;   //Boolean variable keeping track of whether the china dish is on the wire gauze or not
-    public float t=0.0f;    //Variable used in context of time in the program
-    public float speed = 0.5f;  //Variable specifying the speed of change of copper powder color
+    public Transform newcoordinates; 
+    public Transform oldcoordinates;  
+    public Transform bowl;  
+    public Transform Fire;  
+    bool isBurning=false;  
+    public Material powder; 
+    bool bowlPos = false;   
+    public float t=0.0f;    
+    public float speed = 0.5f;  
     void Start()
     {
-        powder.color=new Vector4(144.0f,7.0f,7.0f,255.0f)/255.0f;   //Color of Copper powder is  initialised using rgba values
+        powder.color=new Vector4(144.0f,7.0f,7.0f,255.0f)/255.0f;  
     }
     void Update()
     {
@@ -27,43 +27,43 @@ public class MoveDishToBurner : MonoBehaviour
 
             if(Physics.Raycast(ray,out hit))
             {
-                if((hit.collider != null)&&(hit.collider.GetComponent<EmptScr>() != null))  //Returns true when an object with the component "EmptScr" Script attached with it is touched by the user
+                if((hit.collider != null)&&(hit.collider.GetComponent<EmptScr>() != null))  z
                 {
-                    hit.collider.GetComponent<Transform>().position = newcoordinates.position;  //Position of the china dish is changed to the position on the wire gauze
-                    bowlPos=true;   //Specifies that china dish is on the wire gauze
+                    hit.collider.GetComponent<Transform>().position = newcoordinates.position;  
+                    bowlPos=true;  
                 }
-                else if((hit.collider != null)&&(hit.collider.GetComponent<EmptScrReturns>() != null))  //Returns true when an object with the component "EmptScrReturns" Script attached with it is touched by the user
+                else if((hit.collider != null)&&(hit.collider.GetComponent<EmptScrReturns>() != null))  
                 {
                     if(isBurning)
                     {
-                        Fire.localScale = Vector3.zero; //If the flame is on then its scale is set to zero practically turning it off
-                        isBurning=false;    //Specifies that the flame is now off
+                        Fire.localScale = Vector3.zero; 
+                        isBurning=false;   
                     }
                     else
                     {
-                        Fire.localScale = new Vector3(1,1,1);   //If the flame is off then its scale is set to the specified scale practically turning it on
-                        isBurning=true; //Specifies that the flame is now on
+                        Fire.localScale = new Vector3(1,1,1);   
+                        isBurning=true; 
                     }
                 }
-                else if((hit.collider != null)&&(hit.collider.GetComponent<EmptScrThree>() != null))    ////Returns true when an object with the component "EmptScrThree" Script attached with it is touched by the user
+                else if((hit.collider != null)&&(hit.collider.GetComponent<EmptScrThree>() != null))   
                 {
-                    bowl.position = oldcoordinates.position;    //Chinadish is brought back to it's original position
-                    t=0.0f; //t is reset to it's original value
-                    isBurning=false;    //Burner flame is turned off
-                    powder.color=new Vector4(144.0f,7.0f,7.0f,255.0f)/255.0f;   //Color of copper powder is changed to it's original color 
+                    bowl.position = oldcoordinates.position;    
+                    t=0.0f; 
+                    isBurning=false;   
+                    powder.color=new Vector4(144.0f,7.0f,7.0f,255.0f)/255.0f;    
                 }
             }
         }
         
         if(t>1)
         {
-            bowl.position = oldcoordinates.position;    //Bowl is removed from wire gauze after the color has been changed to black
+            bowl.position = oldcoordinates.position;    
 
         }
         if((isBurning)&&(bowlPos))
         {
-            t+=speed*(Time.deltaTime);  //t is incremented if Burnerflame is on and the china dish is on the wire gauze
-            powder.color =  Color.Lerp(new Vector4(144.0f,7.0f,7.0f,255.0f)/255.0f, Color.black, t);    //Color of copper powder is changed continuously
+            t+=speed*(Time.deltaTime); 
+            powder.color =  Color.Lerp(new Vector4(144.0f,7.0f,7.0f,255.0f)/255.0f, Color.black, t);    
         } 
     }
 }
